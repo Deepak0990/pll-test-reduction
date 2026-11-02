@@ -9,6 +9,34 @@ st.set_page_config(
     layout="wide"
 )
 
+# Custom Styling with a professional semiconductor background theme
+st.markdown("""
+    <style>
+    .stApp {
+        background-color: #0b0f19;
+        background-image: linear-gradient(rgba(11, 15, 25, 0.93), rgba(11, 15, 25, 0.93)), 
+                          url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    .stTabs [data-baseweb="tab-list"] { gap: 8px; }
+    .stTabs [data-baseweb="tab"] {
+        background-color: #111827;
+        border-radius: 8px;
+        color: #9ca3af;
+        padding: 10px 16px;
+        font-weight: 600;
+        border: 1px solid #374151;
+    }
+    .stTabs [aria-selected="true"] {
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
+        color: #06b6d4;
+        border: 1px solid rgba(6, 182, 212, 0.4);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("⚡ AI-Optimized PLL Test Time Reduction Framework")
 st.markdown("Production-grade MLOps dashboard for semiconductor testing, parametric evaluation, and conformal safety checks.")
 
@@ -89,7 +117,6 @@ with tabs[3]:
     st.subheader("📈 Real-Time Jitter Sensitivity Trend (Line Analysis)")
     st.write("Observing how predicted RMS jitter scales across voltage sweep points for this die configuration:")
     
-    # Generate dynamic line chart data responsive to slider settings
     voltage_sweep = np.linspace(1.0, 1.5, 7)
     trend_jitter = [round(0.5 + (v * 0.4) + (temp * 0.01) + (skew * 0.05), 3) for v in voltage_sweep]
     trend_df = pd.DataFrame({
